@@ -1,0 +1,11 @@
+[Unit]
+Description=chat-chronicle: back up hourly, even when nobody opens it
+
+[Timer]
+OnCalendar=hourly
+# Catch up after the machine was off
+Persistent=true
+RandomizedDelaySec=2min
+
+[Install]
+WantedBy=timers.target

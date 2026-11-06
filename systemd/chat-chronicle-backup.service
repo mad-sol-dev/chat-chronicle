@@ -1,0 +1,14 @@
+[Unit]
+Description=chat-chronicle: copy the live sources into the archive
+
+[Service]
+Type=oneshot
+WorkingDirectory=@CHECKOUT@
+# Standard library only, absolute paths: needs neither the .venv nor ~/.local/bin in PATH
+ExecStart="@PYTHON@" "@CHECKOUT@/chronicle.py" backup
+#@ENV@
+# Copies by reflink where possible, so it costs little; still stay out of the way
+Nice=10
+IOSchedulingClass=idle
+StandardOutput=journal
+StandardError=journal

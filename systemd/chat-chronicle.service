@@ -1,0 +1,18 @@
+[Unit]
+Description=chat-chronicle: searchable archive of your own AI chats (127.0.0.1:5120)
+After=default.target
+
+[Service]
+Type=simple
+WorkingDirectory=@CHECKOUT@
+ExecStart="@PYTHON@" "@CHECKOUT@/chronicle.py" --host 127.0.0.1 --port 5120
+#@ENV@
+Restart=on-failure
+RestartSec=10
+# Low priority: the index is rebuilt on start and after changes
+Nice=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target
