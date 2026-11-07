@@ -23,11 +23,11 @@ import shutil
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-import backup
-import chat_index
-import chronicle_db
-import sources
-from digests import MIN_CHARS
+from . import backup
+from . import chat_index
+from . import chronicle_db
+from . import sources
+from .digests import MIN_CHARS
 
 # The German labels come from digests written before the English version
 RESULT_OPEN = re.compile(r"(?im)^\W*(?:Result|Ergebnis)\W*:\W*(?:open|offen)\b")

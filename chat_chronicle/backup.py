@@ -34,8 +34,8 @@ from contextlib import contextmanager
 from fnmatch import fnmatch
 from pathlib import Path
 
-import chronicle_db
-import sources
+from . import chronicle_db
+from . import sources
 
 FICLONE = 0x40049409                       # ioctl from linux/fs.h
 VERSION_RE = re.compile(r"\.\d{4}-\d\d-\d\dT\d{6}(-\d+)?$")

@@ -20,10 +20,10 @@ import time
 from collections import Counter, OrderedDict
 from pathlib import Path
 
-import backup
-import chronicle_db
-import sources
-from sources import fmt_ts, oneline, project_of
+from . import backup
+from . import chronicle_db
+from . import sources
+from .sources import fmt_ts, oneline, project_of
 
 DB_PATH = Path(os.environ.get("CHRONICLE_INDEX") or sources.CACHE_HOME / "chat-chronicle" / "index.db")
 SCHEMA = "5"

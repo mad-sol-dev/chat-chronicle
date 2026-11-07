@@ -51,12 +51,12 @@ import zipfile
 from contextlib import contextmanager
 from pathlib import Path
 
-import backup
-import chronicle_db
-import export_chatgpt
-import export_claude
-import export_gemini
-import sources
+from . import backup
+from . import chronicle_db
+from . import export_chatgpt
+from . import export_claude
+from . import export_gemini
+from . import sources
 
 EXPORTERS = [export_claude, export_chatgpt, export_gemini]
 TMP = ".ingest-tmp"

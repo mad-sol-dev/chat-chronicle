@@ -20,7 +20,7 @@ import sqlite3
 import threading
 import time
 
-import sources
+from . import sources
 
 PATH = sources.ARCHIVE / "chronicle.db"
 

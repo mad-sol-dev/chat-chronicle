@@ -1,10 +1,9 @@
-#!/usr/bin/env python3
-"""chat-chronicle -- searchable archive of your own AI chats.
+"""app -- web interface and command line of chat-chronicle, started by chronicle.py.
 
 Reads Claude Code sessions (CLI and the Code tab of all desktop instances), Cowork
 sessions and the unified corpus of the exports (claude.ai, ChatGPT, Gemini)
 and serves everything as a small website on 127.0.0.1. Python standard
-library only; MCP access lives in chronicle_mcp.py.
+library only; MCP access lives in mcp_server.py (started by chronicle_mcp.py).
 
     chronicle.py                      start the server (default 127.0.0.1:5120)
     chronicle.py --reindex            drop the index and rebuild it
@@ -32,14 +31,14 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, parse_qsl, quote, unquote, urlencode, urlparse
 
-import backup
-import chat_index
-import chronicle_db
-import cleanup
-import ingest
-import sources
-from chat_index import USER_LABEL, tool_input_text, tool_label, tool_summary
-from sources import fmt_ts, oneline, to_dt
+from . import backup
+from . import chat_index
+from . import chronicle_db
+from . import cleanup
+from . import ingest
+from . import sources
+from .chat_index import USER_LABEL, tool_input_text, tool_label, tool_summary
+from .sources import fmt_ts, oneline, to_dt
 
 SHOW_CHARS = 4000          # chars per tool input/output, the rest on click
 # Belongs in every form that changes something: a foreign page can post to
@@ -1077,7 +1076,7 @@ def main():
     if args.cmd == "search":
         return cmd_search(idx, " ".join(args.query), args.source, args.count, args.tools)
     if args.cmd == "digests":
-        import digests
+        from . import digests
         return digests.run(idx, args.provider, args.url, args.model, args.count, args.source,
                            args.id, args.force, args.include_summarized, args.dry_run)
 

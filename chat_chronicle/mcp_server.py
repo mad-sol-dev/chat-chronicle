@@ -1,5 +1,4 @@
-#!/usr/bin/env python3
-"""chronicle_mcp -- MCP access to the chronicle (all of your own AI chats).
+"""mcp_server -- MCP access to the chronicle (all of your own AI chats).
 
 Built around zoom levels, so that a model doesn't dump whole chats into its
 context: search_chats -> chat_overview -> find_in_chat / read_chat.
@@ -12,16 +11,14 @@ Needs the mcp package (>= 2.0), the rest is standard library:
     <venv>/bin/python chronicle_mcp.py                      stdio (Claude Desktop, Claude Code)
     <venv>/bin/python chronicle_mcp.py --http --port 5121   Streamable HTTP (e.g. Open WebUI)
 """
-import os
 import sys
 from datetime import datetime, timedelta, timezone
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from mcp.server.mcpserver import MCPServer
 
-import chat_index                                # noqa: E402
-import sources                                   # noqa: E402
-from sources import oneline                      # noqa: E402
-from mcp.server.mcpserver import MCPServer       # noqa: E402
+from . import chat_index
+from . import sources
+from .sources import oneline
 
 MAX_CHARS = 40000          # upper limit for every single answer
 
@@ -206,7 +203,7 @@ def archive_stats() -> dict:
             "source_labels": sources.PLATFORM_LABEL}
 
 
-if __name__ == "__main__":
+def main():
     if "--http" in sys.argv:
         port = 5121
         if "--port" in sys.argv:

@@ -17,9 +17,9 @@ import time
 import urllib.error
 import urllib.request
 
-import chat_index
-import sources
-from sources import oneline
+from . import chat_index
+from . import sources
+from .sources import oneline
 
 PROVIDERS = {
     "mistral": {"url": "https://api.mistral.ai/v1", "model": "mistral-small-latest", "key_env": "MISTRAL_API_KEY"},
