@@ -2,7 +2,7 @@
 
 # chat-chronicle
 
-> **Text:** written by Claude, read and fact-checked by the maintainer.
+> **Text:** written by Claude, read and fact-checked by the maintainer.\
 > **Code:** AI-generated, tested by trying it against real sessions and exports, not reviewed line by line.
 
 Claude Code deletes its local session transcripts after 30 days unless told otherwise, and the chats on claude.ai, ChatGPT and Gemini live on the providers' servers, reachable only through an occasional export. chat-chronicle keeps one's own copy of all of them on one's own disk and makes it browsable and searchable: a web interface, a command line, and an MCP server, so that Claude (or any other MCP client) can search one's past conversations as a kind of long-term memory.
